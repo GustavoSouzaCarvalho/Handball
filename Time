@@ -1,0 +1,33 @@
+public class Time {
+	private Campeonato campeonato;
+	private Integer id;
+	private String nome;
+	public Time(Campeonato campeonato, Integer id, String nome) {
+		this.campeonato = campeonato;
+		this.id = id;
+		this.nome = nome;
+	}
+	public Campeonato getCampeonato() {
+		return campeonato;
+	}
+	public void setCampeonato(Campeonato campeonato) {
+		this.campeonato = campeonato;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	@Override
+	public String toString() {
+		return "\n\tid: " + id + "\n\tname: " + nome + "\n\tcampeonato: " + campeonato;
+	}
+	
+}
