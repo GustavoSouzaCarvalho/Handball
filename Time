@@ -2,10 +2,7 @@ public class Time {
 	private Campeonato campeonato;
 	private Integer id;
 	private String nome;
-	public Time(Campeonato campeonato, Integer id, String nome) {
-		this.campeonato = campeonato;
-		this.id = id;
-		this.nome = nome;
+	public Time() {
 	}
 	public Campeonato getCampeonato() {
 		return campeonato;
