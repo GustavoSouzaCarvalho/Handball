@@ -2,10 +2,7 @@ public class Campeonato {
 	private Integer id;
 	private Integer ano;
 	private String nome;
-	public Campeonato(Integer id, Integer ano, String nome) {
-		this.id = id;
-		this.ano = ano;
-		this.nome = nome;
+	public Campeonato() {
 	}
 	public Integer getId() {
 		return id;
