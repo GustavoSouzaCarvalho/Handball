@@ -1,1 +1,13 @@
-
+import	java.util.Scanner;
+public class Programa {
+	public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	Campeonato c = new Campeonato();
+	System.out.print("Digite o ID do campeonato: ");
+    c.setId(sc.nextInt());
+    System.out.print("Digite o ano do campeonato: ");
+    c.setAno(sc.nextInt());
+    System.out.print("Digite o nome do campeonato: ");	sc.nextLine();
+    c.setNome(sc.nextLine());
+	}
+}
