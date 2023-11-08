@@ -1,4 +1,4 @@
-import	java.util.Scanner;
+import	java.util.Scanner; import java.util.List; import java.util.ArrayList; 
 public class Programa {
 	public static void main(String[] args) {
 	Scanner sc = new Scanner(System.in);
@@ -9,5 +9,20 @@ public class Programa {
     c.setAno(sc.nextInt());
     System.out.print("Digite o nome do campeonato: ");	sc.nextLine();
     c.setNome(sc.nextLine());
+    System.out.println("Inclua 3 times no campeonato");
+    List<Time> time = new ArrayList<>();
+    for (int i = 0; i < 3; i++) {	// Adiciona tres times ao campeonato
+        Time t = new Time();
+        System.out.printf("Digite o id do %dº time: ", i + 1);
+        t.setId(sc.nextInt());
+        System.out.printf("Digite o nome do %dº time: ", i + 1);
+        sc.nextLine();
+        t.setNome(sc.nextLine());	 // Define o campeonato deste time
+        t.setCampeonato(c);    
+        time.add(t);	// Adiciona o time a lista de times do campeonato
+    }
+    c.setTimes(time);	  // Define a lista de times do campeonato
+    System.out.print(c);
+    
 	}
 }
