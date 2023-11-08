@@ -15,8 +15,7 @@ public class Programa {
         Time t = new Time();
         System.out.printf("Digite o id do %dº time: ", i + 1);
         t.setId(sc.nextInt());
-        System.out.printf("Digite o nome do %dº time: ", i + 1);
-        sc.nextLine();
+        System.out.printf("Digite o nome do %dº time: ", i + 1);  sc.nextLine();
         t.setNome(sc.nextLine());	 // Define o campeonato deste time
         t.setCampeonato(c);    
         time.add(t);	// Adiciona o time a lista de times do campeonato
