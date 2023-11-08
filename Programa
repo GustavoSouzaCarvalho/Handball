@@ -1,3 +1,4 @@
+package handball;
 import	java.util.Scanner; import java.util.List; import java.util.ArrayList; 
 public class Programa {
 	public static void main(String[] args) {
@@ -10,18 +11,34 @@ public class Programa {
     System.out.print("Digite o nome do campeonato: ");	sc.nextLine();
     c.setNome(sc.nextLine());
     System.out.println("Inclua 3 times no campeonato");
+    
     List<Time> time = new ArrayList<>();
+    List<Estadio> estadios = new ArrayList<>();
+    
     for (int i = 0; i < 3; i++) {	// Adiciona tres times ao campeonato
         Time t = new Time();
         System.out.printf("Digite o id do %dº time: ", i + 1);
         t.setId(sc.nextInt());
         System.out.printf("Digite o nome do %dº time: ", i + 1);  sc.nextLine();
-        t.setNome(sc.nextLine());	 // Define o campeonato deste time
-        t.setCampeonato(c);    
-        time.add(t);	// Adiciona o time a lista de times do campeonato
+        t.setNome(sc.nextLine());	 
+        
+        Estadio e = new Estadio();
+        System.out.print("Digite o ID do estadio do time " + (i + 1) + ": ");
+        e.setId(sc.nextInt());
+        System.out.print("Digite o nome do estadio do time " + (i + 1) + ": ");	sc.nextLine();
+        e.setNome(sc.nextLine());
+        
+        t.setEstadio(e);
+        time.add(t);
+        estadios.add(e);
     }
-    c.setTimes(time);	  // Define a lista de times do campeonato
-    System.out.print(c);
-    
+    for (int i = 0; i < time.size(); i++) {
+        Time t = time.get(i);
+        Estadio e = estadios.get(i);
+
+        System.out.println("Time: " + t);
+        System.out.println("Estadio: " + e);
+    }
+    sc.close();
 	}
 }
