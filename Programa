@@ -23,9 +23,9 @@ public class Programa {
         t.setNome(sc.nextLine());	 
         
         Estadio e = new Estadio();
-        System.out.print("Digite o ID do estadio do time " + (i + 1) + ": ");
+        System.out.printf("Digite o ID do estadio do time %d : ", i + 1);
         e.setId(sc.nextInt());
-        System.out.print("Digite o nome do estadio do time " + (i + 1) + ": ");	sc.nextLine();
+        System.out.printf("Digite o nome do estadio do time %d : ", i + 1);	sc.nextLine();
         e.setNome(sc.nextLine());
         
         t.setEstadio(e);
