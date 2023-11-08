@@ -1,14 +1,10 @@
+package handball;
+
 public class Time {
-	private Campeonato campeonato;
 	private Integer id;
 	private String nome;
+	private Estadio estadio;
 	public Time() {
-	}
-	public Campeonato getCampeonato() {
-		return campeonato;
-	}
-	public void setCampeonato(Campeonato campeonato) {
-		this.campeonato = campeonato;
 	}
 	public Integer getId() {
 		return id;
@@ -22,9 +18,16 @@ public class Time {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public Estadio getEstadio() {
+		return estadio;
+	}
+	public void setEstadio(Estadio estadio) {
+		this.estadio = estadio;
+	}
 	@Override
 	public String toString() {
-		return "\n\tid: " + id + "\n\tname: " + nome + "\n\tcampeonato: " + campeonato;
+		return "\n\tid: " + id + "\n\tname: " + nome + "\n\tEstadio sede: "+ estadio;
 	}
 	
 }
