@@ -1,8 +1,11 @@
+package handball;
+import java.util.List;
 public class Campeonato {
 	private Integer id;
 	private Integer ano;
 	private String nome;
-	public Campeonato() {
+	private List<Time> times;
+	public Campeonato() {		
 	}
 	public Integer getId() {
 		return id;
@@ -22,9 +25,24 @@ public class Campeonato {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	@Override
-	public String toString() {
-		return "\n\tid: " + id + "\n\tano: " + ano + "\n\tnome: " + nome;
-	}
-	
+
+	// Método para definir a lista de times no campeonato
+    public void setTimes(List<Time> times) {
+        this.times = times;
+    }
+
+    // Método para obter a lista de times no campeonato
+    public List<Time> getTimes() {
+        return times;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder timesStr = new StringBuilder();
+        for (Time time : times) {
+            timesStr.append("\n\tTime: ").append(time.getNome());
+        }
+
+        return "\n\tid: " + id + "\n\tano: " + ano + "\n\tnome: " + nome + timesStr.toString();
+    }
 }
