@@ -1,4 +1,3 @@
-package handball;
 import java.util.List;
 public class Campeonato {
 	private Integer id;
