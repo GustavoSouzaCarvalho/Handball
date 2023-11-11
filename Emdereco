@@ -1,3 +1,4 @@
+package handball;
 public class Endereco {
 	private Integer id;
 	private String lagradouro;
@@ -5,13 +6,8 @@ public class Endereco {
 	private Integer numero;
 	private String complemento;
 	private Estadio estadio;
-	public Endereco(Estadio estadio, Integer id, String lagradouro, String bairro, Integer numero, String complemento) {
-		this.id = id;
-		this.lagradouro = lagradouro;
-		this.bairro = bairro;
-		this.numero = numero;
-		this.complemento = complemento;
-		this.estadio = estadio;
+	public Endereco() {
+		
 	}
 	public Integer getId() {
 		return id;
@@ -51,7 +47,7 @@ public class Endereco {
 	}
 	@Override
 	public String toString() {
-		return "\n\testadio: " + estadio + "\n\tid: "+ id + "\n\tlagradouro: " + lagradouro + "\n\tbairro: " + bairro + "\n\tnumero: " + numero
+		return "\n\tid: " + id + "\n\tlagradouro: " + lagradouro + "\n\tbairro: " + bairro + "\n\tnumero: " + numero
 				+ "\n\tcomplemento: " + complemento;
 	}
 	
