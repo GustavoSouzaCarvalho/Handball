@@ -28,7 +28,7 @@ public class Estadio {
 	}
 	@Override
 	public String toString() {
-		return "\n\tid: " + id + "\n\tnome: " + nome + "\nendereco: " + endereco;
+		return "\n\tid: " + id + "\n\tnome: " + nome + "\n\nendereco: " + endereco+ "\n\n";
 	}
 	
 }
