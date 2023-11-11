@@ -3,6 +3,7 @@ package handball;
 public class Estadio {
 	private Integer id;
 	private String nome;
+	private Endereco endereco;
 	public Estadio() {
 		
 	}
@@ -18,8 +19,16 @@ public class Estadio {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 	@Override
 	public String toString() {
-		return "\n\tid: " + id + "\n\tnome: " + nome;
+		return "\n\tid: " + id + "\n\tnome: " + nome + "\nendereco: " + endereco;
 	}
+	
 }
