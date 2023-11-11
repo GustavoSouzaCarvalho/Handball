@@ -21,14 +21,15 @@ public class Programa {
         Estadio est = new Estadio();
         Endereco end = new Endereco();
         //Time:
+        System.out.printf("\nDados sobre o time %d:\n\n", i + 1);
         System.out.printf("Digite o id do %dº time: ", i + 1);
         t.setId(sc.nextInt());
         System.out.printf("Digite o nome do %dº time: ", i + 1);  sc.nextLine();
         t.setNome(sc.nextLine());	 
         //Estadio:
-        System.out.printf("Digite o ID do estadio do time %d : ", i + 1);
+        System.out.printf("Digite o ID do estadio do time %d: ", i + 1);
         est.setId(sc.nextInt());
-        System.out.printf("Digite o nome do estadio do time %d : ", i + 1);	sc.nextLine();
+        System.out.printf("Digite o nome do estadio do time %d: ", i + 1);	sc.nextLine();
         est.setNome(sc.nextLine());
         //Endereco:
         System.out.print("Digite o ID do endereço do estádio: ");
@@ -51,8 +52,9 @@ public class Programa {
         Time t = time.get(i);
         Estadio est = estadios.get(i);
 
-        System.out.println("Time: " + t);
+        System.out.println("\nTime: " + t);
     }
     sc.close();
 	}
 }
+
