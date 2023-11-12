@@ -1,9 +1,11 @@
 package handball;
-
+import java.util.List; import java.util.ArrayList;
 public class Time {
 	private Integer id;
 	private String nome;
 	private Estadio estadio;
+	private List<Jogador> jogador = new ArrayList<>();
+	
 	public Time() {
 	}
 	public Integer getId() {
@@ -25,9 +27,15 @@ public class Time {
 	public void setEstadio(Estadio estadio) {
 		this.estadio = estadio;
 	}
+	public void addJogador(Jogador j) {
+		jogador.add(j);
+	}
+	public void removeJogador(Jogador j) {
+		jogador.remove(j);
+	}
 	@Override
 	public String toString() {
-		return "\n\tid: " + id + "\n\tname: " + nome + "\n\tEstadio sede: "+ estadio;
+		return "\n\tid: " + id + "\n\tname: " + nome + "\n\nEstadio sede: "+ estadio + "\n\nJogadores: " + jogador;
 	}
 	
 }
