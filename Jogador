@@ -1,3 +1,4 @@
+package handball;
 import java.time.LocalDate;
 public class Jogador {
 	private Integer id;
@@ -5,7 +6,11 @@ public class Jogador {
 	private LocalDate nascimento;
 	private String genero;
 	private Double altura;
-	private Time time;
+		
+	public Jogador() {
+		super();
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -36,16 +41,10 @@ public class Jogador {
 	public void setAltura(Double altura) {
 		this.altura = altura;
 	}
-	public Time getTime() {
-		return time;
-	}
-	public void setTime(Time time) {
-		this.time = time;
-	}
 	@Override
 	public String toString() {
 		return "\n\tid: " + id + "\n\tnome: " + nome + "\n\tnascimento: " + nascimento + "\n\tgenero: " + genero
-				+ "\n\taltura :" + altura + "\n\ttime: " + time;
+				+ "\n\taltura: " + altura + "\n";
 	}
 	
 }
