@@ -1,5 +1,5 @@
 package handball;
-import	java.util.Scanner; import java.util.List; import java.util.ArrayList; 
+import	java.util.Scanner; import java.util.List; import java.util.ArrayList; import java.time.LocalDate;
 public class Programa {
 	public static void main(String[] args) {
 	Scanner sc = new Scanner(System.in);
@@ -13,7 +13,7 @@ public class Programa {
     System.out.println("Inclua 3 times no campeonato");
     
     List<Time> time = new ArrayList<>();
-    List<Estadio> estadios = new ArrayList<>();
+    List<Estadio> estadio = new ArrayList<>();
     
     for (int i = 0; i < 3; i++) {	// Adiciona tres times ao campeonato
         
@@ -22,39 +22,55 @@ public class Programa {
         Endereco end = new Endereco();
         //Time:
         System.out.printf("\nDados sobre o time %d:\n\n", i + 1);
-        System.out.printf("Digite o id do %dº time: ", i + 1);
+        System.out.printf("Id do %dº time: ", i + 1);
         t.setId(sc.nextInt());
-        System.out.printf("Digite o nome do %dº time: ", i + 1);  sc.nextLine();
+        System.out.printf("Nome do %dº time: ", i + 1);  sc.nextLine();
         t.setNome(sc.nextLine());	 
         //Estadio:
-        System.out.printf("Digite o ID do estadio do time %d: ", i + 1);
+        System.out.printf("ID do estadio do time %d: ", i + 1);
         est.setId(sc.nextInt());
-        System.out.printf("Digite o nome do estadio do time %d: ", i + 1);	sc.nextLine();
+        System.out.printf("Nome do estadio do time %d: ", i + 1);	sc.nextLine();
         est.setNome(sc.nextLine());
         //Endereco:
-        System.out.print("Digite o ID do endereço do estádio: ");
+        System.out.print("ID do endereço do estadio: ");
         end.setId(sc.nextInt());
-        System.out.print("Digite o logradouro do estádio: ");	sc.nextLine();
+        System.out.print("Logradouro do estadio: ");	sc.nextLine();
         end.setLagradouro(sc.nextLine());
-        System.out.print("Digite o número do estádio: ");
+        System.out.print("Numero do estadio: ");
         end.setNumero(sc.nextInt());
-        System.out.print("Digite o bairro do estádio: ");	sc.nextLine();
+        System.out.print("Bairro do estadio: ");	sc.nextLine();
         end.setBairro(sc.nextLine());
-        System.out.print("Digite o complemento do estádio: ");
+        System.out.print("Complemento do endereço: ");
         end.setComplemento(sc.nextLine());
         
-        est.setEndereco(end); // Associe o endereço ao estádio
-        t.setEstadio(est); // Associe o estádio ao time
+        est.setEndereco(end); // Associa o endereço ao estádio
+        t.setEstadio(est); // Associa o estádio ao time
+
+        for (int j = 0; j < 2; j++) { // Adiciona dois jogadores ao time
+            Jogador jog = new Jogador();
+            System.out.printf("\nId do %dº jogador do time %d: ", j + 1, i + 1);
+            jog.setId(sc.nextInt());
+            System.out.printf("Nome do %dº jogador do time %d: ", j + 1, i + 1);	sc.nextLine();
+            jog.setNome(sc.nextLine());
+            System.out.printf("Genero do %dº jogador do time %d: ", j + 1, i + 1);
+            jog.setGenero(sc.nextLine());
+            System.out.printf("Data de nascimento do %dº jogador do time %d (no formato YYYY-MM-DD): ", j + 1, i + 1);
+            jog.setNascimento(LocalDate.parse(sc.nextLine()));
+            System.out.printf("Altura do %dº jogador do time %d: ", j + 1, i + 1);
+            jog.setAltura(sc.nextDouble());
+            System.out.print("\n");
+            t.addJogador(jog); // Adicione o jogador ao time
+        }
+        
         time.add(t);
-        estadios.add(est);
+        estadio.add(est);
     }
     for (int i = 0; i < time.size(); i++) {
         Time t = time.get(i);
-        Estadio est = estadios.get(i);
+        Estadio est = estadio.get(i);
 
         System.out.println("\nTime: " + t);
     }
     sc.close();
 	}
 }
-
