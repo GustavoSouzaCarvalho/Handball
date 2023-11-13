@@ -1,76 +1,99 @@
 package handball;
-import	java.util.Scanner; import java.util.List; import java.util.ArrayList; import java.time.LocalDate;
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+import java.time.LocalDate;
+
 public class Programa {
-	public static void main(String[] args) {
-	Scanner sc = new Scanner(System.in);
-	Campeonato c = new Campeonato();
-	System.out.print("Digite o ID do campeonato: ");
-    c.setId(sc.nextInt());
-    System.out.print("Digite o ano do campeonato: ");
-    c.setAno(sc.nextInt());
-    System.out.print("Digite o nome do campeonato: ");	sc.nextLine();
-    c.setNome(sc.nextLine());
-    System.out.println("Inclua 3 times no campeonato");
-    
-    List<Time> time = new ArrayList<>();
-    List<Estadio> estadio = new ArrayList<>();
-    
-    for (int i = 0; i < 3; i++) {	// Adiciona tres times ao campeonato
-        
-    	Time t = new Time();
-        Estadio est = new Estadio();
-        Endereco end = new Endereco();
-        //Time:
-        System.out.printf("\nDados sobre o time %d:\n\n", i + 1);
-        System.out.printf("Id do %dº time: ", i + 1);
-        t.setId(sc.nextInt());
-        System.out.printf("Nome do %dº time: ", i + 1);  sc.nextLine();
-        t.setNome(sc.nextLine());	 
-        //Estadio:
-        System.out.printf("ID do estadio do time %d: ", i + 1);
-        est.setId(sc.nextInt());
-        System.out.printf("Nome do estadio do time %d: ", i + 1);	sc.nextLine();
-        est.setNome(sc.nextLine());
-        //Endereco:
-        System.out.print("ID do endereço do estadio: ");
-        end.setId(sc.nextInt());
-        System.out.print("Logradouro do estadio: ");	sc.nextLine();
-        end.setLagradouro(sc.nextLine());
-        System.out.print("Numero do estadio: ");
-        end.setNumero(sc.nextInt());
-        System.out.print("Bairro do estadio: ");	sc.nextLine();
-        end.setBairro(sc.nextLine());
-        System.out.print("Complemento do endereço: ");
-        end.setComplemento(sc.nextLine());
-        
-        est.setEndereco(end); // Associa o endereço ao estádio
-        t.setEstadio(est); // Associa o estádio ao time
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Campeonato c = new Campeonato();
+        System.out.print("Digite o ID do campeonato: ");
+        c.setId(sc.nextInt());
+        System.out.print("Digite o ano do campeonato: ");
+        c.setAno(sc.nextInt());
+        System.out.print("Digite o nome do campeonato: ");
+        sc.nextLine();
+        c.setNome(sc.nextLine());
+        System.out.println("Inclua 3 times no campeonato");
 
-        for (int j = 0; j < 2; j++) { // Adiciona dois jogadores ao time
-            Jogador jog = new Jogador();
-            System.out.printf("\nId do %dº jogador do time %d: ", j + 1, i + 1);
-            jog.setId(sc.nextInt());
-            System.out.printf("Nome do %dº jogador do time %d: ", j + 1, i + 1);	sc.nextLine();
-            jog.setNome(sc.nextLine());
-            System.out.printf("Genero do %dº jogador do time %d: ", j + 1, i + 1);
-            jog.setGenero(sc.nextLine());
-            System.out.printf("Data de nascimento do %dº jogador do time %d (no formato YYYY-MM-DD): ", j + 1, i + 1);
-            jog.setNascimento(LocalDate.parse(sc.nextLine()));
-            System.out.printf("Altura do %dº jogador do time %d: ", j + 1, i + 1);
-            jog.setAltura(sc.nextDouble());
-            System.out.print("\n");
-            t.addJogador(jog); // Adicione o jogador ao time
+        List<Time> times = new ArrayList<>();
+        List<Estadio> estadios = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) { // Adiciona três times ao campeonato
+            Time time = new Time();
+            Estadio estadio = new Estadio();
+            Endereco endereco = new Endereco();
+
+            System.out.printf("\nDados sobre o time %d:\n\n", i + 1);
+            System.out.printf("Id do %dº time: ", i + 1);
+            time.setId(sc.nextInt());
+            System.out.printf("Nome do %dº time: ", i + 1);
+            sc.nextLine();
+            time.setNome(sc.nextLine());
+
+            System.out.printf("ID do estádio do time %d: ", i + 1);
+            estadio.setId(sc.nextInt());
+            System.out.printf("Nome do estádio do time %d: ", i + 1);
+            sc.nextLine();
+            estadio.setNome(sc.nextLine());
+
+            System.out.print("ID do endereço do estádio: ");
+            endereco.setId(sc.nextInt());
+            System.out.print("Logradouro do estádio: ");
+            sc.nextLine();
+            endereco.setLagradouro(sc.nextLine());
+            System.out.print("Número do estádio: ");
+            endereco.setNumero(sc.nextInt());
+            System.out.print("Bairro do estádio: ");
+            sc.nextLine();
+            endereco.setBairro(sc.nextLine());
+            System.out.print("Complemento do endereço: ");
+            endereco.setComplemento(sc.nextLine());
+
+            estadio.setEndereco(endereco);
+            time.setEstadio(estadio);
+
+            boolean CapitaoEscolhido = false;
+
+            for (int j = 0; j < 2; j++) { // Adiciona dois jogadores ao time
+                Jogador jogador = new Jogador();
+                System.out.printf("\nId do %dº jogador do time %d: ", j + 1, i + 1);
+                jogador.setId(sc.nextInt());
+                System.out.printf("Nome do %dº jogador do time %d: ", j + 1, i + 1);
+                sc.nextLine();
+                jogador.setNome(sc.nextLine());
+                System.out.printf("Gênero do %dº jogador do time %d: ", j + 1, i + 1);
+                jogador.setGenero(sc.nextLine());
+                System.out.printf("Data de nascimento do %dº jogador do time %d (no formato YYYY-MM-DD): ", j + 1, i + 1);
+                jogador.setNascimento(LocalDate.parse(sc.nextLine()));
+                System.out.printf("Altura do %dº jogador do time %d: ", j + 1, i + 1);
+                jogador.setAltura(sc.nextDouble());
+                System.out.print("\n");
+                
+                if (!CapitaoEscolhido) {
+                    System.out.println("É o capitão do time? (Sim/Nao): ");
+                    String statusCapitao = sc.next().toUpperCase();
+                    if (statusCapitao.equals("SIM")) {
+                        jogador.setStatus(Jogador.Cap.Sim);
+                        CapitaoEscolhido = true;
+                    } else {
+                        jogador.setStatus(Jogador.Cap.Nao);
+                    }
+                } else {
+                    jogador.setStatus(Jogador.Cap.Nao);
+                }
+                
+                time.addJogador(jogador);
+            }
+            times.add(time);
+            estadios.add(estadio);
         }
-        
-        time.add(t);
-        estadio.add(est);
+        for (int i = 0; i < times.size(); i++) {
+            Time time = times.get(i);
+            Estadio estadio = estadios.get(i);
+            System.out.println("\n\nTime: " + time);
+        }
+        sc.close();
     }
-    for (int i = 0; i < time.size(); i++) {
-        Time t = time.get(i);
-        Estadio est = estadio.get(i);
-
-        System.out.println("\nTime: " + t);
-    }
-    sc.close();
-	}
 }
