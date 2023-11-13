@@ -6,10 +6,14 @@ public class Jogador {
 	private LocalDate nascimento;
 	private String genero;
 	private Double altura;
-		
+	private Cap status;
+	
 	public Jogador() {
 		super();
 	}
+	 public enum Cap {
+	     Sim, Nao
+	 }
 	
 	public Integer getId() {
 		return id;
@@ -41,9 +45,16 @@ public class Jogador {
 	public void setAltura(Double altura) {
 		this.altura = altura;
 	}
+	
+	public Cap getStatus() {
+		return status;
+	}
+	public void setStatus(Cap status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
-		return "\n\tid: " + id + "\n\tnome: " + nome + "\n\tnascimento: " + nascimento + "\n\tgenero: " + genero
+		return "\n\tid: " + id + "\n\tCapitao: " + status +"\n\tnome: " + nome + "\n\tnascimento: " + nascimento + "\n\tgenero: " + genero
 				+ "\n\taltura: " + altura + "\n";
 	}
 	
