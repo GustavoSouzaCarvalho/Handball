@@ -33,9 +33,10 @@ public class Time {
 	public void removeJogador(Jogador j) {
 		jogador.remove(j);
 	}
+	
 	@Override
 	public String toString() {
-		return "\n\tid: " + id + "\n\tname: " + nome + "\n\nEstadio sede: "+ estadio + "\n\nJogadores: " + jogador;
+		return "\n\tid: " + id + "\n\tname: " + nome + "\n\nEstadio sede: "+ estadio + "\nJogadores: " + jogador;
 	}
 	
 }
