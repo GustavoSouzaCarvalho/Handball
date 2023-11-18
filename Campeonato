@@ -1,32 +1,87 @@
-package handball;
-import java.util.List;
+package handball;	import java.util.List;	import java.util.ArrayList;
 public class Campeonato {
-	private Integer id;
-	private Integer ano;
-	private String nome;
-	private List<Time> times;
-	public Campeonato() {		
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public Integer getAno() {
-		return ano;
-	}
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    private Integer id;
+    private Integer ano;
+    private String nome;
+    private List<Time> times;
+    private List<Partida> partidas = new ArrayList<>();
 
-	// Método para definir a lista de times no campeonato
+    public Campeonato() {
+
+    }
+
+    public void organizarPartidas() {
+        // Limpar a lista de partidas para evitar duplicatas
+    	partidas.clear();
+
+        // Gerar as partidas originais
+        int totalPartidas = times.size() * (times.size() - 1) / 2;
+        for (int i = 0; i < totalPartidas; i++) {
+            // Gerar a partida original
+            int timeMandanteIndex = i % times.size();
+            int timeVisitanteIndex = (i + 1) % times.size();
+
+            if (timeMandanteIndex == timeVisitanteIndex) {
+                continue;
+            }
+
+            Partida partida = new Partida();
+            partida.setId(partidas.size() + 1);
+            partida.setTimeMandante(times.get(timeMandanteIndex));
+            partida.setTimeVisitante(times.get(timeVisitanteIndex));
+            partidas.add(partida);
+        }
+
+        // Gerar as partidas complementares
+        for (int i = 0; i < totalPartidas; i++) {
+            // Gerar a partida complementar
+            int timeMandanteIndex = (i + 1) % times.size();
+            int timeVisitanteIndex = i % times.size();
+
+            if (timeMandanteIndex == timeVisitanteIndex) {
+                continue;
+            }
+
+            Partida partida = new Partida();
+            partida.setId(partidas.size() + 1);
+            partida.setTimeMandante(times.get(timeMandanteIndex));
+            partida.setTimeVisitante(times.get(timeVisitanteIndex));
+            partidas.add(partida);
+        }
+    }
+    public void adicionarPartida(Partida partida) {
+        this.partidas.add(partida);
+    }
+
+    public List<Partida> getPartidas() {
+        return partidas;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getAno() {
+        return ano;
+    }
+
+    public void setAno(Integer ano) {
+        this.ano = ano;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    // Método para definir a lista de times no campeonato
     public void setTimes(List<Time> times) {
         this.times = times;
     }
