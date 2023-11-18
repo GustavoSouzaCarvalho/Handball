@@ -1,67 +1,90 @@
-import java.time.LocalDate;	import java.util.List;	import java.util.ArrayList;
+package handball;
+import java.time.LocalDate;
 public class Partida {
-	private List<Time> time = new ArrayList<>();
-	private Endereco endereco;
-	private Estadio estadio;
-	private Integer id;
-	private LocalDate data;
-	private Integer pontmand;
-	private Integer pontvisi;
-	public Partida(Endereco endereco, Estadio estadio, Integer id, LocalDate data, Integer pontmand,
-			Integer pontvisi) {
-		this.endereco = endereco;
-		this.estadio = estadio;
-		this.id = id;
-		this.data = data;
-		this.pontmand = pontmand;
-		this.pontvisi = pontvisi;
-	}
-	public void addTime(Time t) {
-		time.add(t);
-	}
-	public void removeTime(Time t) {
-		time.remove(t);
-	}
-	public Endereco getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-	public Estadio getEstadio() {
-		return estadio;
-	}
-	public void setEstadio(Estadio estadio) {
-		this.estadio = estadio;
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public LocalDate getData() {
-		return data;
-	}
-	public void setData(LocalDate data) {
-		this.data = data;
-	}
-	public Integer getPontmand() {
-		return pontmand;
-	}
-	public void setPontmand(Integer pontmand) {
-		this.pontmand = pontmand;
-	}
-	public Integer getPontvisi() {
-		return pontvisi;
-	}
-	public void setPontvisi(Integer pontvisi) {
-		this.pontvisi = pontvisi;
-	}
-	@Override
-	public String toString() {
-		return "\n\ttime: " + time + "\n\tendereco: " + endereco + "\n\testadio: " + estadio + "\n\tid: " + id + "\n\tdata: "
-				+ data + "\n\tpontuacao mandante: " + pontmand + "\n\tpontuacao visitante: " + pontvisi;
+    private Time timeMandante;
+    private Time timeVisitante;
+    private Estadio estadio;
+    private Integer id;
+    private LocalDate data;
+    private Integer pontmand;
+    private Integer pontvisi;
+
+    public Partida() {
+
+    }
+    
+
+    public Partida( Integer id,Time timeVisitante, Time timeMandante) {
+    	this.id = id;
+    	this.timeVisitante = timeVisitante;
+		this.timeMandante = timeMandante;
+		
 	}
 
+
+	public void setTimeMandante(Time timeMandante) {
+        this.timeMandante = timeMandante;
+    }
+
+    public void setTimeVisitante(Time timeVisitante) {
+        this.timeVisitante = timeVisitante;
+    }
+    
+
+    public Time getTimeMandante() {
+		return timeMandante;
+	}
+
+	public Time getTimeVisitante() {
+		return timeVisitante;
+	}
+
+	public Estadio getEstadio() {
+        return estadio;
+    }
+
+    public void setEstadio(Estadio estadio) {
+        this.estadio = estadio;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public Integer getPontmand() {
+        return pontmand;
+    }
+
+    public void setPontmand(Integer pontmand) {
+        this.pontmand = pontmand;
+    }
+
+    public Integer getPontvisi() {
+        return pontvisi;
+    }
+
+    public void setPontvisi(Integer pontvisi) {
+        this.pontvisi = pontvisi;
+    }
+
+    public String toString() {
+        String mandante = (timeMandante != null) ? timeMandante.getNome() : "Time Mandante não definido";
+        String visitante = (timeVisitante != null) ? timeVisitante.getNome() : "Time Visitante não definido";
+
+        return "\n\tTime Mandante: " + mandante + "\n\tTime Visitante: " + visitante + "\n\tEstádio: " + estadio
+                + "\n\tid: " + id + "\n\tdata: " + data + "\n\tpontuacao mandante: " + pontmand + "\n\tpontuacao visitante: "
+                + pontvisi;
+    }
 }
