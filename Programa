@@ -1,10 +1,44 @@
 package handball;
-import java.util.Scanner;
+
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.time.LocalDate;
-
+import java.util.stream.Collectors;
 public class Programa {
+    private static List<Partida> partidas = new ArrayList<>();
+
+    // Função para escolher um time para a partida
+    private static Time escolherTimeParaPartida(List<Time> times) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Escolha um time:");
+
+        for (int i = 0; i < times.size(); i++) {
+            System.out.println((i + 1) + ". " + times.get(i).getNome());
+        }
+
+        int escolha = sc.nextInt();
+        
+        // Garante que a escolha está dentro dos limites
+        while (escolha < 1 || escolha > times.size()) {
+            System.out.println("Escolha inválida. Tente novamente.");
+            escolha = sc.nextInt();
+        }
+
+        return times.get(escolha - 1);
+    }
+
+    public static int exibirMenuInicial() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Escolha uma opção:");
+        System.out.println("1. Iniciar uma partida");
+        System.out.println("2. Acessar o menu");
+
+        int escolha = sc.nextInt();
+        return escolha;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Campeonato c = new Campeonato();
@@ -20,7 +54,7 @@ public class Programa {
         List<Time> times = new ArrayList<>();
         List<Estadio> estadios = new ArrayList<>();
 
-        for (int i = 0; i < 3; i++) { // Adiciona três times ao campeonato
+        for (int i = 0; i < 3; i++) {
             Time time = new Time();
             Estadio estadio = new Estadio();
             Endereco endereco = new Endereco();
@@ -56,7 +90,7 @@ public class Programa {
 
             boolean CapitaoEscolhido = false;
 
-            for (int j = 0; j < 2; j++) { // Adiciona dois jogadores ao time
+            for (int j = 0; j < 2; j++) {
                 Jogador jogador = new Jogador();
                 System.out.printf("\nId do %dº jogador do time %d: ", j + 1, i + 1);
                 jogador.setId(sc.nextInt());
@@ -70,7 +104,7 @@ public class Programa {
                 System.out.printf("Altura do %dº jogador do time %d: ", j + 1, i + 1);
                 jogador.setAltura(sc.nextDouble());
                 System.out.print("\n");
-                
+
                 if (!CapitaoEscolhido) {
                     System.out.println("É o capitão do time? (Sim/Nao): ");
                     String statusCapitao = sc.next().toUpperCase();
@@ -83,15 +117,69 @@ public class Programa {
                 } else {
                     jogador.setStatus(Jogador.Cap.Nao);
                 }
-                
+
                 time.addJogador(jogador);
             }
             times.add(time);
             estadios.add(estadio);
         }
-        for (int i = 0; i < times.size(); i++) {
-            Time time = times.get(i);
-            Estadio estadio = estadios.get(i);
+
+        // Configurar a lista de times no campeonato após o término do loop
+        c.setTimes(times);
+        // Organizar as partidas agora, pois a lista de times está configurada
+        c.organizarPartidas();
+
+        boolean continuarExecucao = true;
+
+        while (continuarExecucao) {
+            int escolha = exibirMenuInicial();
+
+            switch (escolha) {
+                case 1:
+                    // Verificar se há partidas disponíveis para jogar
+                    List<Partida> partidasDisponiveis = c.getPartidas().stream()
+                            .filter(partida -> partida.getData() == null)
+                            .collect(Collectors.toList());
+
+                    if (!partidasDisponiveis.isEmpty()) {
+                        // Escolher a próxima partida disponível (ou implementar lógica de escolha)
+                        Partida p = partidasDisponiveis.get(0);
+
+                        System.out.println("Time Mandante: " + p.getTimeMandante().getNome());
+                        System.out.println("Time Visitante: " + p.getTimeVisitante().getNome());
+                        System.out.println("Local: " + p.getTimeMandante().getEstadio());
+
+                        // Solicitar informações adicionais sobre a partida, como data, pontuações, etc.
+                        System.out.print("ID da partida: ");
+                        p.setId(sc.nextInt());
+                        System.out.print("Data da partida (no formato YYYY-MM-DD): ");
+                        sc.nextLine();
+                        p.setData(LocalDate.parse(sc.nextLine()));
+                        System.out.print("Pontuação do time mandante: ");
+                        p.setPontmand(sc.nextInt());
+                        System.out.print("Pontuação do time visitante: ");
+                        p.setPontvisi(sc.nextInt());
+
+                        // Adicionar a partida ao campeonato
+                        c.adicionarPartida(p);
+                    } else {
+                        System.out.println("Não há partidas disponíveis para jogar.");
+                    }
+                    break;
+            case 2:
+                // Implemente a lógica para o menu de opções aqui
+                break;
+
+            default:
+                System.out.println("Opção inválida. Escolha 1 ou 2.");
+        }
+
+        System.out.println("Deseja continuar? (Sim/Não)");
+        String continuar = sc.next().toLowerCase();
+        continuarExecucao = continuar.equals("sim");
+        }
+    }
+}
             System.out.println("\n\nTime: " + time);
         }
         sc.close();
