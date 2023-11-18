@@ -135,52 +135,51 @@ public class Programa {
         c.organizarPartidas();
         
         
-        for(int i = 0; i < 6;  i ++) {
-        	List<Partida> partidasDisponiveis = c.getPartidas().stream()
+        for (int i = 0; i < 6; i++) {
+            List<Partida> partidasDisponiveis = c.getPartidas().stream()
                     .filter(partida -> partida.getData() == null)
                     .collect(Collectors.toList());
 
             if (!partidasDisponiveis.isEmpty()) {
-                // Escolher a próxima partida disponível (ou implementar lógica de escolha)
                 Partida p = partidasDisponiveis.get(0);
 
+               
                 System.out.println("Time Mandante: " + p.getTimeMandante().getNome());
                 System.out.println("Time Visitante: " + p.getTimeVisitante().getNome());
                 System.out.println("Local: " + p.getTimeMandante().getEstadio());
 
-                // Solicitar informações adicionais sobre a partida, como data, pontuações, etc.
+                
                 System.out.print("ID da partida: ");
                 p.setId(sc.nextInt());
+
                 System.out.print("Data da partida (no formato YYYY-MM-DD): ");
-                sc.nextLine();
+                sc.nextLine(); 
                 p.setData(LocalDate.parse(sc.nextLine()));
+
                 System.out.print("Pontuação do time mandante: ");
                 p.setPontmand(sc.nextInt());
                 System.out.print("Pontuação do time visitante: ");
                 p.setPontvisi(sc.nextInt());
 
-                // Adicionar a partida ao campeonato
-                c.adicionarPartida(p);
-                
+                c.adicionarPartida(p);               
             }
-        	
         }
     
         
 
-        boolean continuarExecucao = true;
+boolean continuarExecucao = true;
 
         while (continuarExecucao) {
             int escolha = exibirMenuInicial();
 
       LocalDate hoje =LocalDate.now();
-      
+              
      switch (escolha) {
              case 1:
             	for(Partida p : partidas) {
+            		LocalDate dia = p.getData();
             		
-					LocalDate dia = p.getData();
-					
+            		if (dia != null) {
 					if (dia.isBefore(hoje)) {
 		                System.out.println("partida: " + p.getId() + " em " + dia + " já ocorreu.");
 		            } else if (dia.isAfter(hoje)) {
@@ -188,8 +187,8 @@ public class Programa {
 		            } else {
 		                System.out.println("Hoje é o dia da partida " + p.getId()+ " em " + dia + "!");
 		            }
+            	  }
             	}
-            	
             	break;
             
             case 2:
