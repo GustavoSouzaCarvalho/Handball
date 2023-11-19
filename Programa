@@ -1,14 +1,16 @@
-package handball;
+package application;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
+import entities.*;
+
 public class Programa {
     private static List<Partida> partidas = new ArrayList<>();
 
-    // Função para escolher um time para a partida
+    
     private static Time escolherTimeParaPartida(List<Time> times) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Escolha um time:");
@@ -19,7 +21,7 @@ public class Programa {
 
         int escolha = sc.nextInt();
         
-        // Garante que a escolha está dentro dos limites
+        
         while (escolha < 1 || escolha > times.size()) {
             System.out.println("Escolha inválida. Tente novamente.");
             escolha = sc.nextInt();
@@ -32,13 +34,16 @@ public class Programa {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Escolha uma opção:");
-        System.out.println("1. Iniciar uma partida");
-        System.out.println("2. Acessar o menu");
+        System.out.println("1. Partidas");
+        System.out.println("2. Tabela");
 
         int escolha = sc.nextInt();
         return escolha;
     }
-
+    
+    
+    
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Campeonato c = new Campeonato();
@@ -124,64 +129,91 @@ public class Programa {
             estadios.add(estadio);
         }
 
-        // Configurar a lista de times no campeonato após o término do loop
+        
         c.setTimes(times);
-        // Organizar as partidas agora, pois a lista de times está configurada
+       
         c.organizarPartidas();
+        
+        
+        for (int i = 0; i < 6; i++) {
+            List<Partida> partidasDisponiveis = c.getPartidas().stream()
+                    .filter(partida -> partida.getData() == null)
+                    .collect(Collectors.toList());
 
-        boolean continuarExecucao = true;
+            if (!partidasDisponiveis.isEmpty()) {
+                Partida p = partidasDisponiveis.get(0);
+
+               
+                System.out.println("Time Mandante: " + p.getTimeMandante().getNome());
+                System.out.println("Time Visitante: " + p.getTimeVisitante().getNome());
+                System.out.println("Local: " + p.getTimeMandante().getEstadio());
+
+                
+                System.out.print("ID da partida: ");
+                p.setId(sc.nextInt());
+
+                System.out.print("Data da partida (no formato YYYY-MM-DD): ");
+                sc.nextLine(); 
+                p.setData(LocalDate.parse(sc.nextLine()));
+
+                System.out.print("Pontuação do time mandante: ");
+                p.setPontmand(sc.nextInt());
+                System.out.print("Pontuação do time visitante: ");
+                p.setPontvisi(sc.nextInt());
+
+                c.adicionarPartida(p);               
+            }
+        }
+        
+              
+            		
+       boolean continuarExecucao = true;
 
         while (continuarExecucao) {
             int escolha = exibirMenuInicial();
-
-            switch (escolha) {
-                case 1:
-                    // Verificar se há partidas disponíveis para jogar
-                    List<Partida> partidasDisponiveis = c.getPartidas().stream()
-                            .filter(partida -> partida.getData() == null)
-                            .collect(Collectors.toList());
-
-                    if (!partidasDisponiveis.isEmpty()) {
-                        // Escolher a próxima partida disponível (ou implementar lógica de escolha)
-                        Partida p = partidasDisponiveis.get(0);
-
-                        System.out.println("Time Mandante: " + p.getTimeMandante().getNome());
-                        System.out.println("Time Visitante: " + p.getTimeVisitante().getNome());
-                        System.out.println("Local: " + p.getTimeMandante().getEstadio());
-
-                        // Solicitar informações adicionais sobre a partida, como data, pontuações, etc.
-                        System.out.print("ID da partida: ");
-                        p.setId(sc.nextInt());
-                        System.out.print("Data da partida (no formato YYYY-MM-DD): ");
-                        sc.nextLine();
-                        p.setData(LocalDate.parse(sc.nextLine()));
-                        System.out.print("Pontuação do time mandante: ");
-                        p.setPontmand(sc.nextInt());
-                        System.out.print("Pontuação do time visitante: ");
-                        p.setPontvisi(sc.nextInt());
-
-                        // Adicionar a partida ao campeonato
-                        c.adicionarPartida(p);
-                    } else {
-                        System.out.println("Não há partidas disponíveis para jogar.");
-                    }
-                    break;
+            		
+     switch (escolha) {
+             case 1:
+            	for(Partida p : c.getPartidas()) {
+            	  
+            	  LocalDate hoje =LocalDate.now();
+            		LocalDate dia = p.getData();
+            		
+            		if (dia != null) {
+					if (dia.isBefore(hoje)) {
+		                System.out.println("partida: " + p.getId() + " em " + dia + " já ocorreu.");
+		            } else if (dia.isAfter(hoje)) {
+		                System.out.println("Partida " + p.getId() + " em " + dia + " ainda vai acontecer.");
+		            } else {
+		                System.out.println("Hoje é o dia da partida " + p.getId()+ " em " + dia + "!");
+		            }
+            	  }
+              }
+            	
+            	break;
+            
             case 2:
-                // Implemente a lógica para o menu de opções aqui
-                break;
+                
+               
+            	
+            	break;
+            
+     
+        default:
+            System.out.println("Opção inválida. Escolha 1 ou 2.");
+    }
 
-            default:
-                System.out.println("Opção inválida. Escolha 1 ou 2.");
-        }
-
+            
+       
         System.out.println("Deseja continuar? (Sim/Não)");
         String continuar = sc.next().toLowerCase();
         continuarExecucao = continuar.equals("sim");
-        }
-    }
-}
-            System.out.println("\n\nTime: " + time);
+        
+    
+
+           
         }
         sc.close();
     }
 }
+    
