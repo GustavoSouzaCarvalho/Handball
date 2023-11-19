@@ -1,4 +1,5 @@
-package handball;
+package entities;
+
 public class Endereco {
 	private Integer id;
 	private String lagradouro;
