@@ -1,5 +1,7 @@
-package handball;
-import java.util.List; import java.util.ArrayList;
+package entities;
+
+import java.util.List;
+import java.util.ArrayList;
 public class Time {
 	private Integer id;
 	private String nome;
@@ -38,5 +40,4 @@ public class Time {
 	public String toString() {
 		return "\n\tid: " + id + "\n\tname: " + nome + "\n\nEstadio sede: "+ estadio + "\nJogadores: " + jogador;
 	}
-	
 }
