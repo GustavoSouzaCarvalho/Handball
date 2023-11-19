@@ -1,4 +1,4 @@
-package handball;
+package entities;
 
 public class Estadio {
 	private Integer id;
@@ -31,5 +31,4 @@ public class Estadio {
 		return "\n\tid: " + id + "\n\tnome: " + nome + "\n\nendereco: " + endereco+ "\n\n";
 	}
 	
-}
 }
