@@ -1,4 +1,9 @@
-package handball;	import java.util.List;	import java.util.ArrayList;
+package entities;
+
+
+import java.util.List;	
+import java.util.ArrayList;
+
 public class Campeonato {
     private Integer id;
     private Integer ano;
