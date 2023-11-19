@@ -164,19 +164,19 @@ public class Programa {
                 c.adicionarPartida(p);               
             }
         }
-    
         
-
-boolean continuarExecucao = true;
+              
+            		
+       boolean continuarExecucao = true;
 
         while (continuarExecucao) {
             int escolha = exibirMenuInicial();
-
-      LocalDate hoje =LocalDate.now();
-              
+            		
      switch (escolha) {
              case 1:
-            	for(Partida p : partidas) {
+            	for(Partida p : c.getPartidas()) {
+            	  
+            	  LocalDate hoje =LocalDate.now();
             		LocalDate dia = p.getData();
             		
             		if (dia != null) {
@@ -188,7 +188,8 @@ boolean continuarExecucao = true;
 		                System.out.println("Hoje é o dia da partida " + p.getId()+ " em " + dia + "!");
 		            }
             	  }
-            	}
+              }
+            	
             	break;
             
             case 2:
